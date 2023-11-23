@@ -11,13 +11,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@drawable/top_shape"
-        android:backgroundTint="@color/blue2Mode"
+        android:background="@drawable/top_app"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginHorizontal="30dp"
             android:orientation="horizontal"
             >
             <ImageView

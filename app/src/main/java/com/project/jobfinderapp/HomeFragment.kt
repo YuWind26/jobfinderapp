@@ -19,16 +19,21 @@ class HomeFragment : Fragment() {
 
         // RecyclerView untuk list horizontal
         val recyclerViewHorizontal: RecyclerView = view.findViewById(R.id.recyclerViewHorizontal)
-        val horizontalAdapter = RecyclerViewHomeHorizontalAdapter(listOf(R.drawable.ic_home,R.drawable.edit_txt_bg))  // Ganti dengan adapter yang sesuai
+        val horizontalAdapter = RecyclerViewHomeHorizontalAdapter(listOf("Teknik","Marketing","Teknologi","Farmasi","Mandarin","English"))
+        horizontalAdapter.setOnItemClickListener(object : RecyclerViewHomeHorizontalAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+            }
+        })
         recyclerViewHorizontal.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewHorizontal.adapter = horizontalAdapter
 
-        // RecyclerView untuk list vertical
-//        val recyclerViewVertical: RecyclerView = view.findViewById(R.id.recyclerViewVertical)
-//        val verticalAdapter = VerticalAdapter()  // Ganti dengan adapter yang sesuai
-//        recyclerViewVertical.layoutManager = LinearLayoutManager(context)
-//        recyclerViewVertical.adapter = verticalAdapter
+        val recyclerViewVertical: RecyclerView = view.findViewById(R.id.recyclerViewVertical)
+        val verticalAdapter = RecyclerViewHomeVertical(listOf("Teknik","Marketing","Teknologi","Farmasi","Mandarin","English"))
+        recyclerViewVertical.layoutManager = LinearLayoutManager(context)
+        recyclerViewVertical.adapter = verticalAdapter
+
+
 
         return view
     }
