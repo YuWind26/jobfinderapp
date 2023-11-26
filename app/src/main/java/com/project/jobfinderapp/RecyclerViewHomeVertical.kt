@@ -7,8 +7,24 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class RecyclerViewHomeVertical (private val dataList: List<String>) :
+data class DataModel(
+    val jobRole: String,
+    val companyName: String,
+    val companyAddress: String
+)
+
+interface  OnItemClickListener{
+    fun onItemClick(position: Int)
+}
+
+class RecyclerViewHomeVertical(private val dataList: List<DataModel>) :
     RecyclerView.Adapter<RecyclerViewHomeVertical.ViewHolder>() {
+
+    private var onItemClickListener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener){
+        this.onItemClickListener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -19,6 +35,10 @@ class RecyclerViewHomeVertical (private val dataList: List<String>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = dataList[position]
         holder.bind(item)
+
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.onItemClick(position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -26,11 +46,15 @@ class RecyclerViewHomeVertical (private val dataList: List<String>) :
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val textView: TextView = itemView.findViewById(R.id.textViewVertical)
+        private val tvJobRole: TextView = itemView.findViewById(R.id.tvRoleJob)
+        private val tvCompanyName: TextView = itemView.findViewById(R.id.tvNameComp)
+        private val tvCompanyAddress: TextView = itemView.findViewById(R.id.tvAddressComp)
 
-        fun bind(item: String) {
+        fun bind(item: DataModel) {
             // Bind data to views
-            textView.text = item
+            tvJobRole.text = item.jobRole
+            tvCompanyName.text = item.companyName
+            tvCompanyAddress.text = item.companyAddress
         }
     }
 }
