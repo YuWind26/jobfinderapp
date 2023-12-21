@@ -1,7 +1,9 @@
 package com.project.jobfinderapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -14,10 +16,16 @@ class DetailPelatihanActivity : AppCompatActivity() {
         val tabLayout  = findViewById<TabLayout>(R.id.tabLayoutLowongan)
         val vp2 = findViewById<ViewPager2>(R.id.vpLowongan)
         val backBtn = findViewById<ImageView>(R.id.back_btn)
+        val fabBtn = findViewById<Button>(R.id.fabAction)
 
         // Set a click listener for the back button
         backBtn.setOnClickListener {
             onBackPressed()
+        }
+
+        fabBtn.setOnClickListener {
+            val intent = Intent(applicationContext, KelasActivity::class.java)
+            startActivity(intent)
         }
 
         tabLayout.addTab(tabLayout.newTab().setText("Deskripsi"))
